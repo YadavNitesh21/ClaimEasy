@@ -1,4 +1,6 @@
-﻿namespace ClaimEasy
+﻿using Serilog;
+
+namespace ClaimEasy
 {
     public class Startup
     {
@@ -18,7 +20,8 @@
         public void Configure(IApplicationBuilder app)
         {
             app.UseHttpsRedirection();
-            app.UseRouting();            
+            app.UseRouting();
+            app.UseSerilogRequestLogging(); // Log HTTP requests
             app.UseSwagger();
             app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ClaimEasy v1"));
             app.UseEndpoints(endpoints =>
